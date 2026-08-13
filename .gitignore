@@ -1,0 +1,97 @@
+# =============================================================================
+# Orynode Mobile AI — 应忽略的内容（确定稿）
+#
+# 要进仓库的：源码、project.yml、docs、LICENSE、各端 README/NOTICE、
+#             ios/Resources 图标源、ios/scripts、单元测试。
+# 不要进仓库的：生成工程、本机工具链 checkout、模型权重、签名/密钥、
+#             IDE 私货、成片口播/分镜（ios/docs/video）。
+# =============================================================================
+
+# ----- macOS -----
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ----- 密钥 / 本机配置（任何端） -----
+.env
+.env.*
+!.env.example
+*.p12
+*.pem
+*.mobileprovision
+*.keystore
+*.jks
+Secrets.xcconfig
+**/Secrets.xcconfig
+
+# ----- 模型与私有实测素材 -----
+# 权重经 Files 导入，不入库、不进安装包
+*.litertlm
+# Core ML embedding 由 ios/scripts/prepare-embedding-model.sh 生成；
+# Release 会打进 App，但二进制不进入 Git。
+ios/Sources/Resources/Embedding/*.mlmodelc/
+ios/Sources/Resources/Embedding/*-tokenizer/
+ios/.embedding-tools/
+**/TestData/private/
+# 成片口播与分镜（引流证明片）；本地保留，不入库
+ios/docs/video/
+
+# ----- iOS / Xcode -----
+# XcodeGen 生成物（唯一事实源是 ios/project.yml）
+ios/OrynodeMobileAI.xcodeproj/
+# LiteRT-LM 等本机 checkout（ios/scripts/bootstrap-litertlm.sh）
+ios/.tools/
+
+DerivedData/
+**/DerivedData/
+build/
+**/build/
+*.xcuserstate
+**/xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# SwiftPM 本机解析缓存（path 包由 bootstrap + Xcode 解析，不提交 lock）
+.build/
+**/.build/
+.swiftpm/
+**/.swiftpm/
+Package.resolved
+**/Package.resolved
+
+# ----- Android（占位目录开工后沿用） -----
+android/.gradle/
+android/local.properties
+android/**/build/
+android/captures/
+android/.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# ----- Flutter（占位目录开工后沿用） -----
+flutter/.dart_tool/
+flutter/.packages
+flutter/.pub-cache/
+flutter/.pub/
+flutter/build/
+flutter/.flutter-plugins
+flutter/.flutter-plugins-dependencies
+flutter/**/Generated.xcconfig
+flutter/**/flutter_export_environment.sh
+
+# ----- 通用 IDE -----
+.idea/
+*.iml
+*.swp
+*~
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/settings.json.example

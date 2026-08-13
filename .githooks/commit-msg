@@ -1,0 +1,28 @@
+#!/bin/sh
+# 提交说明须含中文（Merge / Revert 除外）。
+set -e
+
+MSG_FILE="$1"
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+  exit 0
+fi
+
+FIRST_LINE="$(sed -n '1p' "$MSG_FILE" | tr -d '\r')"
+case "$FIRST_LINE" in
+  Merge\ *|Revert\ *|fixup!\ *|squash!\ *)
+    exit 0
+    ;;
+esac
+
+if ! python3 - "$MSG_FILE" <<'PY'
+import pathlib, re, sys
+text = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
+body = "\n".join(line for line in text.splitlines() if not line.startswith("#"))
+if not re.search(r"[\u4e00-\u9fff]", body):
+    sys.exit(1)
+PY
+then
+  echo "拒绝提交：说明须使用中文（至少包含一个汉字）" >&2
+  echo "示例：首次提交：落地 iOS Spike 与多平台文档骨架。" >&2
+  exit 1
+fi

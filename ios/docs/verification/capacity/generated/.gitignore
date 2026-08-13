@@ -1,0 +1,3 @@
+# Generated capacity corpora — do not commit large fixtures.
+*
+!.gitignore

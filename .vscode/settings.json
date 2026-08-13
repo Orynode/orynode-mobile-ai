@@ -1,0 +1,21 @@
+{
+  "git.autoRepositoryDetection": "openEditors",
+  "git.repositoryScanMaxDepth": 0,
+  "git.repositoryScanIgnoredFolders": [
+    ".tools",
+    "ios/.tools",
+    "LiteRT-LM"
+  ],
+  "git.ignoredRepositories": [
+    "${workspaceFolder}/ios/.tools/LiteRT-LM"
+  ],
+  "files.exclude": {
+    "ios/.tools": true
+  },
+  "files.watcherExclude": {
+    "**/ios/.tools/**": true
+  },
+  "search.exclude": {
+    "**/ios/.tools": true
+  }
+}

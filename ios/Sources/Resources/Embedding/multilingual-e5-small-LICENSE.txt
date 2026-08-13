@@ -1,0 +1,3 @@
+Model: intfloat/multilingual-e5-small
+Source: https://huggingface.co/intfloat/multilingual-e5-small
+License: MIT (verify the upstream model card before distribution)

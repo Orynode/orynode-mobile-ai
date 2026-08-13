@@ -1,0 +1,11 @@
+Mixed language note / 中英混合备忘
+
+The knowledge base runs fully on-device. Documents stay on the phone.
+本地知识库不会上传文档，也不会在回答时调用云端搜索。
+
+Keyword: offline-first. 关键词：严格离线。
+When evidence is weak, the app must refuse instead of guessing.
+证据不足时应拒答，而不是用模型常识补全。
+
+Contact for docs only (not a real support line): docs@example.invalid
+文档联系仅作语料：docs@example.invalid

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orynode.local/evalset/question.schema.json",
+  "title": "OrynodeMobileEvalQuestion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "question", "expect"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]-[0-9]{3}$",
+      "description": "Stable id, e.g. A-001 / P-001 / N-001"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["answered", "paraphrase", "sparse", "no_answer", "conflict"]
+    },
+    "question": { "type": "string", "minLength": 2 },
+    "expect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["behavior"],
+      "properties": {
+        "behavior": { "type": "string", "enum": ["answer", "refuse"] },
+        "allowed_documents": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths relative to evalset/, e.g. corpus/markdown/01_install_guide.md"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["document", "must_contain"],
+            "properties": {
+              "document": { "type": "string" },
+              "must_contain": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 1
+              },
+              "locator": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["plainText", "markdown", "pdf"]
+                  },
+                  "heading": { "type": "string" },
+                  "start_line": { "type": "integer", "minimum": 1 },
+                  "end_line": { "type": "integer", "minimum": 1 },
+                  "page": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "PDFKit document-order 1-based page"
+                  },
+                  "note": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "refuse_reason": {
+          "type": "string",
+          "description": "Why refuse is correct (for reviewers)"
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

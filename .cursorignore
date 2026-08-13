@@ -1,0 +1,3 @@
+# 本机工具链与生成工程（勿纳入 Cursor 索引 / 勿提交）
+ios/.tools/
+ios/OrynodeMobileAI.xcodeproj/

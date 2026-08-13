@@ -1,0 +1,19 @@
+#!/bin/sh
+# 仅允许本仓库配置的 Orynode 身份提交。
+set -e
+
+NAME="$(git config --local --get user.name 2>/dev/null || true)"
+EMAIL="$(git config --local --get user.email 2>/dev/null || true)"
+
+if [ "$NAME" != "Orynode" ]; then
+  echo "拒绝提交：本仓库 user.name 必须是 Orynode（当前：${NAME:-未设置}）" >&2
+  echo "请执行：git config --local user.name \"Orynode\"" >&2
+  exit 1
+fi
+
+EXPECTED_EMAIL="292662251+Orynode@users.noreply.github.com"
+if [ "$EMAIL" != "$EXPECTED_EMAIL" ]; then
+  echo "拒绝提交：本仓库 user.email 必须是 $EXPECTED_EMAIL（当前：${EMAIL:-未设置}）" >&2
+  echo "请执行：git config --local user.email \"$EXPECTED_EMAIL\"" >&2
+  exit 1
+fi

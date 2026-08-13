@@ -1,0 +1,54 @@
+{
+  "id": "orynode-mobile-evalset",
+  "version": "0.2.0-seed",
+  "frozen": false,
+  "description": "Pre-registered corpus and questions for verification.md gates. Seed with text PDFs — expand question counts before claiming release.",
+  "baseline_device": "iPhone 16 Pro (8 GB)",
+  "targets": {
+    "txt": 3,
+    "markdown": 3,
+    "text_pdf": 4,
+    "failure_samples": 2,
+    "answered": 30,
+    "paraphrase_or_sparse": 15,
+    "no_answer_or_conflict": 15
+  },
+  "seed_counts": {
+    "txt": 3,
+    "markdown": 3,
+    "text_pdf": 4,
+    "failure_samples": 0,
+    "answered": 12,
+    "paraphrase_or_sparse": 7,
+    "no_answer_or_conflict": 5
+  },
+  "contracts": {
+    "retrieval_version": "hybrid-cosine0.7-fts0.3-v1",
+    "default_chunker_version": "structured-520-64-v1",
+    "content_hash_version": "sha256-v1",
+    "embedding": "multilingual-e5-small (INT8 Core ML; record exact indexVersion + file hash on each run)"
+  },
+  "corpus": [
+    "corpus/txt/01_short_offline.txt",
+    "corpus/txt/02_long_capacity.txt",
+    "corpus/txt/03_mixed_en_zh.txt",
+    "corpus/markdown/01_install_guide.md",
+    "corpus/markdown/02_faq_headings.md",
+    "corpus/markdown/03_duplicate_terms.md",
+    "corpus/pdf/01_short.pdf",
+    "corpus/pdf/02_long.pdf",
+    "corpus/pdf/03_multipage.pdf",
+    "corpus/pdf/04_complex_layout.pdf"
+  ],
+  "questions": [
+    "questions/answered.jsonl",
+    "questions/paraphrase_sparse.jsonl",
+    "questions/no_answer_conflict.jsonl"
+  ],
+  "notes": [
+    "Do not tune fusion weights or refuse threshold against cherry-picked demos.",
+    "Text PDFs are generated from corpus/pdf/sources via scripts/generate_text_pdfs.swift; regenerate after editing sources.",
+    "Failure samples remain placeholders under corpus/failures.",
+    "Set frozen=true only after corpus+questions reach targets and a baseline report is archived."
+  ]
+}

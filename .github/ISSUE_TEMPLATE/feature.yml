@@ -1,0 +1,36 @@
+name: 功能建议
+description: 新能力、体验改进、平台相关建议
+title: "[建议] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        当前以 iOS 知识库 MVP 为主；Android / Flutter 仍为规划中。请说明场景与优先级。
+  - type: dropdown
+    id: area
+    attributes:
+      label: 范围
+      options:
+        - iOS 知识库（导入 / 检索 / 问答 / 引用）
+        - iOS 模型与性能
+        - 文档 / 工程
+        - Android
+        - Flutter
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 要解决什么问题
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议做法（可选）
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 怎样算完成（可选）

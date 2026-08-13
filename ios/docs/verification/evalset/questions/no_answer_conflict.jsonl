@@ -1,0 +1,5 @@
+{"id":"N-001","kind":"no_answer","question":"公司明年营收目标是多少？","expect":{"behavior":"refuse","refuse_reason":"语料未包含任何营收数字","allowed_documents":[]}}
+{"id":"N-002","kind":"no_answer","question":"岳麓区管理部的街道门牌号是多少？","expect":{"behavior":"refuse","refuse_reason":"本 evalset 未收录公积金手册地址；用于防通识补全","allowed_documents":[]}}
+{"id":"N-003","kind":"conflict","question":"办公楼门禁密码是多少？","expect":{"behavior":"refuse","refuse_reason":"02_faq_headings.md 同时写 2468 与 1357，无法裁决","allowed_documents":["corpus/markdown/02_faq_headings.md"],"evidence":[{"document":"corpus/markdown/02_faq_headings.md","must_contain":["2468"]},{"document":"corpus/markdown/02_faq_headings.md","must_contain":["1357"]}]}}
+{"id":"N-004","kind":"no_answer","question":"如何用本 App 给猫做绝育手术？","expect":{"behavior":"refuse","refuse_reason":"医疗操作超出资料且应拒答","allowed_documents":[]}}
+{"id":"N-005","kind":"no_answer","question":"03_multipage.pdf 的印刷页标签自定义成了什么？","expect":{"behavior":"refuse","refuse_reason":"语料只写文档序页码合同，未给出任何印刷页标签字符串","allowed_documents":[]}}

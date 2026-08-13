@@ -1,0 +1,49 @@
+name: 缺陷报告
+description: 功能异常、崩溃、检索或引用错误等
+title: "[缺陷] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽量附上机型、系统版本与是否断网复现。模型权重与私人文档请勿上传到 Issue。
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 平台
+      options:
+        - iOS
+        - Android（尚未实现）
+        - Flutter（尚未实现）
+        - 文档 / 仓库
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: 设备与系统（iOS）
+      placeholder: 例如 iPhone 16 Pro · iOS 18.x
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: 1. … 2. … 3. …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 补充
+      placeholder: 模块（导入/索引/问答/引用）、是否飞行模式、LiteRT / 模型版本等

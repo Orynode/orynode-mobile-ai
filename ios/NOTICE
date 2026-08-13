@@ -1,0 +1,52 @@
+Orynode Mobile AI
+Copyright 2026 Orynode contributors
+
+This product includes software for the iOS on-device private knowledge base
+(SwiftUI + LiteRT-LM + Core ML embedding + SQLite). The repository license is
+MIT — see ../LICENSE.
+
+---------------------------------------------------------------------------
+Third-party components
+
+1) LiteRT-LM (Google LLC)
+   Source / binary: https://github.com/google-ai-edge/LiteRT-LM
+   License: Apache License 2.0
+   Local checkout (developers): ios/.tools/LiteRT-LM after running
+   ios/scripts/bootstrap-litertlm.sh — that tree includes its own LICENSE.
+   The application links the LiteRTLM Swift package and CLiteRTLM xcframework
+   from the pinned release tag documented in ios/docs/development.md.
+
+2) Gemma model weights (Google)
+   Not included in this repository. Users obtain `.litertlm` weights separately
+   and import them on device.
+   Terms: https://ai.google.dev/gemma/terms
+   Docs: https://ai.google.dev/gemma
+
+3) multilingual-e5-small (intfloat)
+   Source: https://huggingface.co/intfloat/multilingual-e5-small
+   License: MIT
+   The release application redistributes a locally converted, INT8
+   weight-quantized Core ML artifact and its tokenizer. It is used only for
+   on-device document and query embeddings; the application never downloads
+   this model at runtime.
+
+4) huggingface/swift-transformers (Tokenizers)
+   Source: https://github.com/huggingface/swift-transformers
+   License: Apache License 2.0
+   Used to load the bundled offline tokenizer for multilingual-e5-small.
+
+5) Apple system frameworks (Vision, CoreML, PDFKit, Accelerate, SwiftUI, …)
+   Used under Apple SDK license terms; not redistributed here.
+
+6) ZIPFoundation (Thomas Zoechling / weichsel)
+   Source: https://github.com/weichsel/ZIPFoundation
+   License: MIT
+   Used by Infrastructure to open Office Open XML packages (docx / xlsx /
+   pptx) for on-device Markdown text extraction.
+
+7) Material Icon Theme file icons (Material Extensions)
+   Source: https://github.com/material-extensions/vscode-material-icon-theme
+   License: MIT
+   Bundled PNG derivatives (Word / Excel / PowerPoint / PDF / Markdown /
+   plain text) under ios/Sources/Resources/Assets.xcassets/FileIcon*.imageset
+   for the knowledge-base document list.
