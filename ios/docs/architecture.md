@@ -201,7 +201,7 @@ Home = KnowledgeBaseView
   ├─ 导入
   ├─ 文档列表 / 状态 / 重试 / 删除
   └─ 问答 Sheet（回答 + 来源详情）
-Settings = 模型状态 / 隐私说明 / 删除模型
+Settings = 模型状态与内存释放 / 知识库占用 / 清空聊天 / 隐私说明 / 版本与开源许可 / 删除模型
 ```
 
 装配根：`App/KnowledgeBaseComposition` 创建 SQLite、embedding、抽取器与生成器。Features 只通过 `KnowledgeBaseServing` 调用，不 `import OrynodeInfrastructure`。

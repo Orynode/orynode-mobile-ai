@@ -43,6 +43,25 @@ final class AppModel: ObservableObject {
         return String(format: "%.2f GB · 已安装", gb)
     }
 
+    var appVersionDescription: String {
+        let short = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+            ?? "—"
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        if let build, !build.isEmpty {
+            return "\(short)（\(build)）"
+        }
+        return short
+    }
+
+    /// Free RAM held by the loaded weights; file on disk stays. Reload before the next answer.
+    func unloadLoadedModel() async {
+        loadingTask?.cancel()
+        loadingTask = nil
+        await engine.unload()
+        runtimeState = installedModel.map(ModelRuntimeState.installed) ?? .notInstalled
+        statusMessage = "模型已释放；下次使用前请重新加载。"
+    }
+
     func start() async {
         phase = .launching
         statusMessage = "正在检查本机模型…"
@@ -108,9 +127,7 @@ final class AppModel: ObservableObject {
     }
 
     func handleMemoryWarning() {
-        Task { await engine.unload() }
-        runtimeState = installedModel.map(ModelRuntimeState.installed) ?? .notInstalled
-        statusMessage = "模型已释放；下次使用前请重新加载。"
+        Task { await unloadLoadedModel() }
     }
 
     func clearError() {

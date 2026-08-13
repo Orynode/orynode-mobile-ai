@@ -18,7 +18,7 @@ struct CitedAnswerText: View {
         Self.displayParagraphs(from: text)
     }
 
-    static func referencedIndices(in text: String) -> [Int] {
+    nonisolated static func referencedIndices(in text: String) -> [Int] {
         let pattern = try! NSRegularExpression(pattern: #"\[(\d+)\]"#)
         let ns = text as NSString
         let full = NSRange(location: 0, length: ns.length)
@@ -34,11 +34,11 @@ struct CitedAnswerText: View {
     }
 
     /// Strip broken template labels; keep the model's line structure.
-    static func prepareMarkdown(_ text: String) -> String {
+    nonisolated static func prepareMarkdown(_ text: String) -> String {
         displayParagraphs(from: text).joined(separator: "\n")
     }
 
-    static func displayParagraphs(from text: String) -> [String] {
+    nonisolated static func displayParagraphs(from text: String) -> [String] {
         text
             .replacingOccurrences(of: "\r\n", with: "\n")
             .components(separatedBy: "\n")
@@ -47,9 +47,8 @@ struct CitedAnswerText: View {
             .filter { !$0.isEmpty }
     }
 
-    private static func stripTemplateLabels(_ line: String) -> String {
-        var value = line
-        let trimmed = value.trimmingCharacters(in: .whitespaces)
+    nonisolated private static func stripTemplateLabels(_ line: String) -> String {
+        let trimmed = line.trimmingCharacters(in: .whitespaces)
         for prefix in [
             "**结论：**", "**结论:**", "结论：", "结论:",
             "**依据：**", "**依据:**", "依据：", "依据:",
@@ -59,7 +58,7 @@ struct CitedAnswerText: View {
                     .trimmingCharacters(in: .whitespaces)
             }
         }
-        return value
+        return line
     }
 
     var body: some View {

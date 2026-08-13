@@ -83,6 +83,9 @@ targets:
       - path: Sources/Resources/Assets.xcassets
       - path: Sources/Resources/Embedding
         buildPhase: resources
+      - path: NOTICE
+        buildPhase: resources
+        type: file
     dependencies:
       - target: OrynodeDomain
       - target: OrynodeApplication

@@ -45,6 +45,14 @@ final class KnowledgeBaseModel: ObservableObject {
         documents.filter { $0.status == .ready }.count
     }
 
+    var indexedChunkCount: Int {
+        documents.reduce(0) { $0 + max(0, $1.importedChunkCount) }
+    }
+
+    var persistedSessionCount: Int {
+        sessions.filter { !$0.messages.isEmpty }.count
+    }
+
     var activeSessionTitle: String {
         if let id = activeSessionID,
            let session = sessions.first(where: { $0.id == id }),
@@ -111,6 +119,15 @@ final class KnowledgeBaseModel: ObservableObject {
                 normalizeSearchScope()
             }
         }
+        saveSessions()
+    }
+
+    func clearAllChatHistory() {
+        guard !isAnswering else { return }
+        sessions = []
+        activeSessionID = nil
+        messages = []
+        searchScope = .all
         saveSessions()
     }
 
