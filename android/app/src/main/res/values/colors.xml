@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches iOS AppIcon white plate. -->
+    <color name="ic_launcher_background">#FFFFFFFF</color>
+    <!-- Matches iOS OrynodeTheme.paper / Compose LaunchScreen. -->
+    <color name="orynode_paper">#FFF6F8FD</color>
+</resources>

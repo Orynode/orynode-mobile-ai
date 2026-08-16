@@ -1,0 +1,59 @@
+Orynode Mobile AI
+Copyright 2026 Orynode contributors
+
+This product includes software for the Android on-device private knowledge base
+(Jetpack Compose + LiteRT / LiteRT-LM + SQLite). The repository license is
+MIT — see the repository root LICENSE.
+
+---------------------------------------------------------------------------
+Third-party components
+
+1) LiteRT (Google LLC)
+   Maven: com.google.ai.edge.litert
+   License: Apache License 2.0
+   Used for on-device multilingual-e5-small text embeddings.
+
+2) LiteRT-LM (Google LLC)
+   Maven: com.google.ai.edge.litertlm:litertlm-android:0.15.0
+   Source: https://github.com/google-ai-edge/LiteRT-LM
+   License: Apache License 2.0
+   Used for on-device LLM orchestration (Gemma `.litertlm`).
+
+3) Gemma model weights (Google)
+   Not included in this repository. Users obtain `.litertlm` weights separately
+   (SAF import or model-prep download from hf-mirror) and keep them on device.
+   Terms: https://ai.google.dev/gemma/terms
+   Docs: https://ai.google.dev/gemma
+
+4) multilingual-e5-small (intfloat)
+   Source: https://huggingface.co/intfloat/multilingual-e5-small
+   License: MIT
+   The release application redistributes a locally converted TFLite artifact and
+   its tokenizer under assets/embedding/ (prepared by
+   android/scripts/prepare-embedding-model.sh; weight binaries are gitignored).
+   Used only for on-device document and query embeddings; the application never
+   downloads this model at runtime.
+
+5) PdfBox-Android (Apache PdfBox / Tom Roush)
+   Maven: com.tom-roush:pdfbox-android
+   License: Apache License 2.0
+   Used for PDF text-layer extraction on device.
+
+6) ML Kit Text Recognition Chinese (Google)
+   Used for OCR on sparse/scanned PDF pages. Subject to Google ML Kit terms;
+   not redistributed as source in this repository.
+
+7) OkHttp (Square)
+   License: Apache License 2.0
+   Used only by the model-prep download path (hf-mirror). Knowledge-base
+   import / index / retrieve / generate do not use the network.
+
+8) Kotlin / AndroidX / Jetpack Compose / kotlinx.coroutines
+   License: Apache License 2.0
+
+9) Material Icon Theme file icons (Material Extensions)
+   Source: https://github.com/material-extensions/vscode-material-icon-theme
+   License: MIT
+   Bundled PNG derivatives (Word / Excel / PowerPoint / PDF / Markdown /
+   plain text) under res/drawable-*/file_icon_*.png for the knowledge-base
+   document list.

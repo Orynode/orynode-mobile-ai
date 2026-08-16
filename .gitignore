@@ -32,6 +32,10 @@ Secrets.xcconfig
 ios/Sources/Resources/Embedding/*.mlmodelc/
 ios/Sources/Resources/Embedding/*-tokenizer/
 ios/.embedding-tools/
+# Android LiteRT embedding（prepare-embedding-model.sh 生成，不进 Git）
+android/app/src/main/assets/embedding/*.tflite
+android/app/src/main/assets/embedding/*-tokenizer/
+android/.embedding-tools/
 **/TestData/private/
 # 成片口播与分镜（引流证明片）；本地保留，不入库
 ios/docs/video/
@@ -64,12 +68,14 @@ build/
 Package.resolved
 **/Package.resolved
 
-# ----- Android（占位目录开工后沿用） -----
+# ----- Android（工程与构建产物） -----
 android/.gradle/
+android/.kotlin/
 android/local.properties
 android/**/build/
 android/captures/
 android/.cxx/
+android/dist/
 *.apk
 *.aab
 *.ap_

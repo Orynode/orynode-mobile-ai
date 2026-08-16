@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Orynode" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Paper bars avoid black letterboxing when returning from SAF. -->
+        <item name="android:statusBarColor">@color/orynode_paper</item>
+        <item name="android:navigationBarColor">@color/orynode_paper</item>
+        <item name="android:windowBackground">@color/orynode_paper</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <!--
+      System splash: paper + complete BrandLogo (padded for circular mask).
+      Not adaptive launcher (avoids huge cropped icon). Not empty paper (looks worse).
+      Titles belong in Compose LaunchScreen / OnboardingStageLayout.
+    -->
+    <style name="Theme.Orynode.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/orynode_paper</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_mark</item>
+        <item name="windowSplashScreenAnimationDuration">0</item>
+        <item name="postSplashScreenTheme">@style/Theme.Orynode</item>
+    </style>
+</resources>
